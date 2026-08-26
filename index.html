@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ariel Xie - Portfolio</title>
+  
+  <!-- Import Fonts: Karla & Caveat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Karla:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- MAIN PORTFOLIO PAGE -->
+  <div id="main-portfolio-page">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <a href="#home" class="logo">Ariel Xie</a>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#" onclick="openFullModal('projects-full-modal'); return false;">Projects</a>
+        <a href="#about-detail">About Me</a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="avatar-wrapper">
+        <img src="avatar.png" alt="Ariel Illustration" class="avatar-img" onclick="toggleAboutPopover()">
+
+        <!-- Popover "About Me" Quick Card -->
+        <div id="about-popover" class="about-popover">
+          <span class="close-popover" onclick="toggleAboutPopover()">&times;</span>
+          <h3 class="handwritten">About Me</h3>
+          <p><strong>Major in Industrial Engineering</strong><br>Minor in Artificial Intelligence</p>
+          <span class="location-badge">based in Toronto</span>
+        </div>
+      </div>
+
+      <h1>Hi, I'm Ariel, a data-curious problem solver</h1>
+
+      <!-- Social Icons -->
+      <div class="social-links">
+        <a href="https://github.com/arielxie31" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/arielyxie" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Latest Projects Section -->
+    <section id="projects" class="section">
+      <div class="section-header">
+        <div>
+          <span class="handwritten accent-text">my experience</span>
+          <h2>Latest Projects</h2>
+        </div>
+        <a href="#" class="see-all handwritten" onclick="openFullModal('projects-full-modal'); return false;">See All</a>
+      </div>
+      
+      <div class="project-grid-horizontal">
+        <!-- Spotify Card -->
+        <div class="project-item">
+          <div class="card-container" onclick="openFullModal('spotify-project-page')">
+            <img src="spotify.png" alt="Spotify Listening Analysis" class="card-img">
+            <div class="card-overlay">
+              <p>An interactive machine learning dashboard that analyzes a year of streaming data. Uses K-Means Clustering to segment listening into 4 behavioral archetypes and Isolation Forest to detect anomaly peak days.</p>
+            </div>
+          </div>
+          <h3 class="card-title" onclick="openFullModal('spotify-project-page')">Listening Between the Lines: A year of Spotify Data</h3>
+        </div>
+
+        <!-- Movie Recommender Card -->
+        <div class="project-item">
+          <div class="card-container" onclick="openFullModal('movie-project-page')">
+            <img src="movies.png" alt="Movie Recommender System" class="card-img">
+            <div class="card-overlay">
+              <p>A dual-approach recommendation engine built on the MovieLens 1M dataset. Features content-based TF-IDF genre matching and an SVD matrix factorization model that reduced rating prediction RMSE by ~17%</p>
+            </div>
+          </div>
+          <h3 class="card-title" onclick="openFullModal('movie-project-page')">Movie Recommender System: Hybrid Filtering & Evaluation</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools & Experience Section -->
+    <section id="about" class="section split-layout">
+      <div class="column">
+        <span class="handwritten accent-text">tools</span>
+        <h2>What I use</h2>
+        <h4 class="handwritten category-title">Data/Design</h4>
+        <ul class="skills-list">
+          <li>Python (Pandas, NumPy)</li>
+          <li>Matplotlib/Seaborn</li>
+          <li>Scikit-learn</li>
+          <li>Power BI</li>
+          <li>SQL</li>
+          <li>Excel Office Scripts</li>
+          <li>Streamlit</li>
+          <li>GitHub</li>
+          <li>Figma</li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h2>Experience</h2>
+        <div class="timeline-item">
+          <span class="handwritten date-tag">May 2026 - Present</span>
+          <p class="job-title">Data Analyst Intern @ CIBC</p>
+        </div>
+        <div class="timeline-item">
+          <span class="handwritten date-tag">Feb 2025 - Nov 2026</span>
+          <p class="job-title">Research Assistant @ Interactive Media Lab</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Integrated About Me Section -->
+    <section id="about-detail" class="section about-detail-section">
+      <div class="about-header text-center">
+        <h2>About Me</h2>
+        <span class="handwritten accent-text">Hi! I'm Ariel</span>
+      </div>
+      <div class="about-text-content">
+        <p>I'm a third year student at the University of Toronto, majoring in Industrial Engineering with a minor in Artificial Intelligence.</p>
+        <p>I'm currently a Data Analyst intern at CIBC with the SPPD CoE and Infrastructure Project Finance teams (It's definitely a ride being on two teams!).</p>
+        <p>What drew me to data was realizing industrial engineering, optimizing systems, improving processes, was just data science under a different name. I'm interested in working beyond data analytics and visualizations and more into data science and machine learning where I can predict what's next, not just describing what already happened.</p>
+        <p>When I'm not working with data, you'll probably find me crocheting or trying all the matcha spots in Toronto.</p>
+      </div>
+    </section>
+
+    <!-- Footer Links -->
+    <footer class="footer-links">
+      <a href="mailto:ariel.xie@utoronto.ca" class="footer-btn">ariel.xie@utoronto.ca</a>
+      <a href="https://github.com/arielxie31" target="_blank" class="footer-btn">GitHub</a>
+      <a href="https://www.linkedin.com/in/arielyxie" target="_blank" class="footer-btn">LinkedIn</a>
+    </footer>
+  </div>
+
+  <!-- FULL PAGE MODAL: PROJECTS LIST -->
+  <div id="projects-full-modal" class="full-page-modal">
+    <div class="full-modal-header">
+      <span class="close-full-modal" onclick="closeFullModal('projects-full-modal')">&times;</span>
+      <h2>Latest Projects</h2>
+      <span class="handwritten accent-text center-sub">my experience</span>
+    </div>
+    <div class="full-modal-body">
+      <div class="modal-project-item" onclick="openFullModal('spotify-project-page')">
+        <img src="spotify.png" alt="Spotify Listening Analysis" class="modal-img">
+        <h3>Listening Between the Lines: A year of Spotify Data</h3>
+        <p>An interactive machine learning dashboard that analyzes a year of streaming data. Uses K-Means Clustering to segment listening into 4 behavioral archetypes and Isolation Forest to detect anomaly peak days.</p>
+      </div>
+      <div class="modal-project-item" onclick="openFullModal('movie-project-page')">
+        <img src="movies.png" alt="Movie Recommender System" class="modal-img">
+        <h3>Movie Recommender System: Hybrid Filtering & Evaluation</h3>
+        <p>A dual-approach recommendation engine built on the MovieLens 1M dataset. Features content-based TF-IDF genre matching and an SVD matrix factorization model that reduced rating prediction RMSE by ~17%</p>
+      </div>
+      <div class="modal-project-item" onclick="openFullModal('zara-project-page')">
+        <img src="zara.png" alt="Zara Redesign" class="modal-img">
+        <h3>Zara Website Redesign</h3>
+        <p>An e-commerce UX case study redesigning Zara’s desktop experience in Figma. Uses Nielsen heuristic evaluations and competitive benchmarking to introduce uniform product grids, breadcrumbs, and WCAG-compliant contrast.</p>
+      </div>
+    </div>
+    <footer class="footer-links">
+      <a href="mailto:ariel.xie@utoronto.ca" class="footer-btn">ariel.xie@utoronto.ca</a>
+      <a href="https://github.com/arielxie31" target="_blank" class="footer-btn">GitHub</a>
+      <a href="https://www.linkedin.com/in/arielyxie" target="_blank" class="footer-btn">LinkedIn</a>
+    </footer>
+  </div>
+
+  <!-- DEDICATED PAGE MODAL: SPOTIFY LISTENING ANALYSIS -->
+  <div id="spotify-project-page" class="full-page-modal project-detail-page">
+    <div class="full-modal-header">
+      <span class="close-full-modal" onclick="closeFullModal('spotify-project-page')">&times;</span>
+    </div>
+    
+    <div class="project-detail-container">
+      <img src="spotify.png" alt="My Spotify Listening Analysis" class="project-hero-img">
+      
+      <h1 class="detail-title">Listening Between the Lines: A year of Spotify Data</h1>
+      
+      <p class="detail-intro">
+        This project transforms a year of raw Spotify streaming data into an interactive machine learning-driven analytics application. The platform uses a custom-engineered three-column technical architecture to map hidden behavioural patterns, highlight anomaly thresholds and profile listening habits over time.
+      </p>
+
+      <div class="project-meta">
+        <p><strong>Tech Stack:</strong> Python (Pandas), Scikit-Learn, Streamlit, Plotly</p>
+        <p><strong>Role:</strong> Data Scientist</p>
+        <p><strong>Live Demo:</strong> <a href="http://192.168.2.12:8501" target="_blank">Streamlit</a> | <strong>Source Code:</strong> <a href="https://github.com/arielxie31/spotify_data" target="_blank">GitHub</a></p>
+      </div>
+
+      <div class="detail-section">
+        <span class="handwritten detail-subtitle">the pipeline</span>
+        <h2 class="detail-section-title">Core Engineering & Machine Learning Architecture</h2>
+        <p class="detail-subheading">Behavioural Segmentation (K-Means Clustering)</p>
+        <p>To move beyond surface-level top charts, the pipeline aggregates raw streams into continuous listening sessions (time gaps > 30 mins)</p>
+        
+        <ul class="detail-list">
+          <li><strong>Feature Engineering:</strong> Sessions are vectorized across 8 multidimensional features: total minutes played, absolute track count, unique artist distribution, skip rate metrics, average duration per track, weekend vs weekday and explicit time of day ratios (evening vs late night).</li>
+          <li><strong>Algorithmic Modeling:</strong> Features are isolated and scaled via StandardScaler to ensure zero-mean and unit variance, then fed into the K-Means Clustering algorithm at k=4.</li>
+          <li><strong>Output:</strong> Maps music sessions into four distinct behavioural profiles:
+            <ul class="nested-detail-list">
+              <li><em>Deep Dive</em> (focused, uninterrupted album listening)</li>
+              <li><em>Marathon Mode</em> (high volume, long duration background loops)</li>
+              <li><em>Browsing Mode</em> (playlist skimming with high skip rate)</li>
+              <li><em>Evening Unwind</em> (structured, after hours routine listening)</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <span class="handwritten detail-subtitle">anomaly detection</span>
+        <h2 class="detail-section-title">Structural Outlier Detection (Isolation Forest)</h2>
+        <p>To pinpoint days of irregular user behaviour, such as study listening sessions, the application implemented unsupervised anomaly detection</p>
+        
+        <ul class="detail-list">
+          <li><strong>Algorithmic Modeling:</strong> A non-parametric Isolation Forest model isolates anomalous data points by randomly partitioning features across the daily aggregated dataset</li>
+          <li><strong>The Output:</strong> Computes anomaly scores to separate standard listening behaviour from statistical anomalies, overlaying contextual data tracking on identified peak outliers across historical timeline.</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <span class="handwritten detail-subtitle">design</span>
+        <h2 class="detail-section-title">Front End & UI/UX Design</h2>
+        <ul class="detail-list">
+          <li><strong>Macro 3-Column Interface:</strong> Built a bespoke dashboard layout optimized for horizontal telemetry. The interface isolates stacked KPI telemetry cards on the far left, centers high-density Plotly data trends in the middle view, and structures tabular breakdowns and clustering distributions on the right panel.</li>
+          <li><strong>Unified Visual Theme:</strong> Overrode the default Streamlit canvas using injected CSS to maintain a clean aesthetics. This features custom card containers, transparent chart backgrounds and readable typography.</li>
+          <li><strong>Asynchronous UX:</strong> Integrated custom JavaScript scroll-reveal viewport observer using an asynchronous IntersectionObserver iframe component to animate panels into view as the user scrolls.</li>
+        </ul>
+      </div>
+    </div>
+
+    <footer class="footer-links">
+      <a href="mailto:ariel.xie@utoronto.ca" class="footer-btn">ariel.xie@utoronto.ca</a>
+      <a href="https://github.com/arielxie31" target="_blank" class="footer-btn">GitHub</a>
+      <a href="https://www.linkedin.com/in/arielyxie" target="_blank" class="footer-btn">LinkedIn</a>
+    </footer>
+  </div>
+
+  <!-- DEDICATED PAGE MODAL: MOVIE RECOMMENDER SYSTEM -->
+  <div id="movie-project-page" class="full-page-modal project-detail-page">
+    <div class="full-modal-header">
+      <span class="close-full-modal" onclick="closeFullModal('movie-project-page')">&times;</span>
+    </div>
+
+    <div class="project-detail-container">
+      <img src="movies.png" alt="Movie Recommender System Posters" class="project-hero-img">
+
+      <h1 class="detail-title">Movie Recommender System: Hybrid Filtering & Evaluation</h1>
+
+      <p class="detail-intro">
+        Designed and deployed a dual-approach recommendation engine analyzing the MovieLens 1M dataset. The system solves both cold-start and personalization challenges by combining content metadata matching with matrix-factorization-based collaborative filtering.
+      </p>
+
+      <div class="project-meta">
+        <p><strong>Tech Stack:</strong> Python (Pandas), Scikit-Learn, Streamlit</p>
+        <p><strong>Role:</strong> Data Scientist</p>
+        <p><strong>Source Code:</strong> <a href="https://github.com/arielxie31/movie_recommender" target="_blank">GitHub</a></p>
+      </div>
+
+      <div class="detail-section">
+        <span class="handwritten detail-subtitle">technical execution</span>
+        <h2 class="detail-section-title">Machine Learning Approaches</h2>
+        
+        <p><strong>Content Based Filtering</strong></p>
+        <ul class="detail-list">
+          <li>Constructed feature vectors using TF-IDF on genre metadata and calculated cosine similarity matrices to output immediate, title-matched recommendations.</li>
+        </ul>
+
+        <p class="mt-16"><strong>Collaborative Filtering (SVD)</strong></p>
+        <ul class="detail-list">
+          <li>Leveraged the Surprise library to train Singular Value Decomposition model on historical user rating data, learning latent factors to predict unobserved user-item preferences.</li>
+        </ul>
+
+        <p class="mt-16"><strong>Interactive UI:</strong></p>
+        <ul class="detail-list">
+          <li>Built a responsive Streamlit front-end allowing users to toggle between movie-title similarity search and personalized user-ID recommendation feeds.</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <span class="handwritten detail-subtitle">model evaluation & metrics</span>
+        <h2 class="detail-section-title">Performance Results</h2>
+        
+        <p><strong>Random Baseline</strong></p>
+        <ul class="detail-list">
+          <li>Error (RMSE): 1.05</li>
+          <li>Absolute Error (MAE): 0.84</li>
+          <li>Optimization: N/A</li>
+        </ul>
+
+        <p class="mt-16"><strong>SVD Matrix Factorization</strong></p>
+        <ul class="detail-list">
+          <li>Error (RMSE): 0.8729</li>
+          <li>Absolute Error (MAE): 0.6845</li>
+          <li>Optimization: 17% error reduction</li>
+        </ul>
+      </div>
+    </div>
+
+    <footer class="footer-links">
+      <a href="mailto:ariel.xie@utoronto.ca" class="footer-btn">ariel.xie@utoronto.ca</a>
+      <a href="https://github.com/arielxie31" target="_blank" class="footer-btn">GitHub</a>
+      <a href="https://www.linkedin.com/in/arielyxie" target="_blank" class="footer-btn">LinkedIn</a>
+    </footer>
+  </div>
+
+  <!-- DEDICATED PAGE MODAL: ZARA WEBSITE REDESIGN -->
+  <div id="zara-project-page" class="full-page-modal project-detail-page">
+    <div class="full-modal-header">
+      <span class="close-full-modal" onclick="closeFullModal('zara-project-page')">&times;</span>
+    </div>
+
+    <div class="project-detail-container text-center">
+      <!-- Main Hero Header Image -->
+      <img src="zara.png" alt="Zara Website Redesign Mockups" class="project-hero-img">
+
+      <h1 class="detail-title">Zara Website Redesign</h1>
+      <p class="detail-subtitle-text">Balancing High-Fashion Aesthetic with Functional E-Commerce Usability</p>
+
+      <p class="detail-intro text-left">
+        Zara is a leading global fast-fashion brand, yet its desktop e-commerce platform faces persistent criticism for poor navigation, low contrast, and non-standard layouts. This project evaluates key usability breakdowns across Zara’s desktop experience and proposes a redesigned interface that improves task flow, wayfinding and WCAG accessibility while preserving the brand’s signature minimalist aesthetic.
+      </p>
+
+      <div class="project-meta text-left">
+        <p><strong>Tools:</strong> Figma, Competitive Analysis, Heuristic Evaluation Frameworks</p>
+        <p><strong>Role:</strong> UX Researcher, UX Designer</p>
+      </div>
+
+      <!-- Research & Discovery -->
+      <div class="detail-section text-left">
+        <span class="handwritten detail-subtitle">research & discovery</span>
+        <p class="mb-12">To map systematic usability issues, the research phase combined quantitative heuristics with qualitative user sentiment:</p>
+
+        <ul class="detail-list">
+          <li><strong>Nielsen Heuristic Evaluation:</strong> Evaluated an end-to-end checkout flow for basic apparel item. Identified critical usability breaches across Aesthetic & Minimalist Design, Flexibility & Efficiency of Use and Recognition Rather Than Recall (rated on a 0-4 severity scale).</li>
+          <li><strong>Secondary Market Research:</strong> Aggregated qualitative user complaints across Reddit and Medium. Key findings highlighted severe user frustration, often driving site abandonment and lost sales due to unintuitive navigation and low visual contrast.</li>
+          <li><strong>Competitive Benchmarking:</strong> Evaluated key competitors (H&M and Uniqlo). Benchmarks revealed that industry leaders consistently utilize structured breadcrumbs, uniform product grids, high text-to-background contrast, and actionable homepage CTAs.</li>
+        </ul>
+        <p class="text-underline mt-12 text-center">Heuristic Evaluation & Competitive Analysis</p>
+      </div>
+
+      <!-- Exploration & Trade off Analysis -->
+      <div class="detail-section text-left">
+        <span class="handwritten detail-subtitle">exploration & trade off analysis</span>
+        <p class="mb-16">Before finalizing the interface, multiple conceptual layouts were prototyped and weighed against user goals and brand equity:</p>
+        
+        <!-- Dynamic Embedded Diagram Images -->
+        <div class="zara-diagram-container">
+          <div class="wireframe-row">
+            <img src="sticky_bar.png" alt="Rejected Sticky Navigation Bar Wireframe" class="zara-diagram-img">
+            <img src="breadcrumb.png" alt="Selected Breadcrumb Navigation Wireframe" class="zara-diagram-img">
+          </div>
+          <div class="wireframe-row mt-16">
+            <img src="editorial_grid.png" alt="Rejected Editorial Large Image Layout Wireframe" class="zara-diagram-img">
+            <img src="even_grids.png" alt="Selected Even Grid Catalog Layout Wireframe" class="zara-diagram-img">
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Design Solutions -->
+      <div class="detail-section text-left">
+        <span class="handwritten detail-subtitle">key design solutions</span>
+        
+        <h3 class="solution-heading">Wayfinding and & Breadcrumb Architecture</h3>
+        <div class="zara-solution-block text-center">
+          <img src="breadcrumb_design.png" alt="Wayfinding and Breadcrumb Interface" class="zara-solution-img">
+          <p class="solution-caption">Introduced persistent breadcrumb trains, inspired by industry standards to allow effortless step backs along the catalog hierarchy</p>
+        </div>
+
+        <h3 class="solution-heading mt-24">Uniform Product Grid</h3>
+        <div class="zara-solution-block text-center">
+          <img src="uniform_grid.png" alt="Uniform Product Grid Layout" class="zara-solution-img">
+          <p class="solution-caption">Replaced Zara's inconsistent pyramid layout with an even grid structure, reducing visual fatigue and streamlining product comparison</p>
+        </div>
+
+        <h3 class="solution-heading mt-24">Contrast & WCAG Compliance</h3>
+        <div class="zara-solution-block text-center">
+          <img src="smallfont.png" alt="Current Zara Font Size Comparison" class="zara-solution-img">
+          <img src="largefont.png" alt="Increased Font Size for Accessibility" class="zara-solution-img mt-12">
+          <p class="solution-caption mt-8">Increased typography sizing to ensure readability</p>
+        </div>
+
+        <h3 class="solution-heading mt-24">Call To Action</h3>
+        <div class="zara-solution-block text-center">
+          <img src="calltoaction.png" alt="Landing Page Banner Call To Action" class="zara-solution-img">
+          <p class="solution-caption">Added minimalist banner CTA on the landing page to surface seasonal collections immediately upon entry to site</p>
+        </div>
+      </div>
+
+      <!-- Page Footer -->
+      <footer class="footer-links">
+        <a href="mailto:ariel.xie@utoronto.ca" class="footer-btn">ariel.xie@utoronto.ca</a>
+        <a href="https://github.com/arielxie31" target="_blank" class="footer-btn">GitHub</a>
+        <a href="https://www.linkedin.com/in/arielyxie" target="_blank" class="footer-btn">LinkedIn</a>
+      </footer>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
