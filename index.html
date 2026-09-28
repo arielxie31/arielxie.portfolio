@@ -11,6 +11,124 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Karla:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Carousel Container */
+    .carousel-container {
+      position: relative;
+      max-width: 700px;
+      margin: 20px auto;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid #eaeaea;
+      background-color: #fafafa;
+    }
+
+    .carousel-slide {
+      display: none;
+      text-align: center;
+      padding: 16px;
+    }
+
+    .carousel-slide.active {
+      display: block;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      max-height: 480px;
+      object-fit: contain;
+      border-radius: 6px;
+    }
+
+    /* Arrow Navigation Buttons */
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.45);
+      color: #ffffff;
+      border: none;
+      font-size: 1.5rem;
+      padding: 10px 14px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background-color 0.2s ease;
+      user-select: none;
+      z-index: 10;
+    }
+
+    .carousel-btn:hover {
+      background-color: rgba(0, 0, 0, 0.75);
+    }
+
+    .prev-btn {
+      left: 12px;
+    }
+
+    .next-btn {
+      right: 12px;
+    }
+
+    /* Overlapping Collage Layout for Pics 3, 4, 5 */
+    .collage-container {
+      position: relative;
+      max-width: 750px;
+      height: 420px;
+      margin: 30px auto;
+    }
+
+    .collage-img {
+      position: absolute;
+      border-radius: 8px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      border: 1px solid #e0e0e0;
+      transition: transform 0.3s ease, z-index 0.3s ease;
+    }
+
+    .collage-img:hover {
+      transform: scale(1.03) translateY(-5px);
+      z-index: 10 !important;
+    }
+
+    .collage-img-3 {
+      width: 45%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    .collage-img-4 {
+      width: 45%;
+      top: 60px;
+      left: 28%;
+      z-index: 2;
+    }
+
+    .collage-img-5 {
+      width: 50%;
+      top: 110px;
+      right: 0;
+      z-index: 3;
+    }
+
+    @media (max-width: 600px) {
+      .collage-container {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .collage-img {
+        position: relative;
+        width: 100% !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -68,6 +186,17 @@
       </div>
       
       <div class="project-grid-horizontal">
+        <!-- Ontario Health Access Companion Card (First Project) -->
+        <div class="project-item">
+          <div class="card-container" onclick="openFullModal('ontario-health-project-page')">
+            <img src="pics/homepage_final.png" alt="Ontario Health Access Companion" class="card-img">
+            <div class="card-overlay">
+              <p>Human-centered UI/UX redesign and high-fidelity healthcare portal prototyping aimed at reducing fragmentation when finding primary care in Ontario.</p>
+            </div>
+          </div>
+          <h3 class="card-title" onclick="openFullModal('ontario-health-project-page')">Ontario Health Access Companion</h3>
+        </div>
+
         <!-- Spotify Card -->
         <div class="project-item">
           <div class="card-container" onclick="openFullModal('spotify-project-page')">
@@ -78,28 +207,20 @@
           </div>
           <h3 class="card-title" onclick="openFullModal('spotify-project-page')">Listening Between the Lines: A year of Spotify Data</h3>
         </div>
+      </div> <!-- Added missing closing div for project-grid-horizontal -->
+    </section> <!-- Added missing closing section for projects -->
 
-        <!-- Movie Recommender Card -->
-        <div class="project-item">
-          <div class="card-container" onclick="openFullModal('movie-project-page')">
-            <img src="pics/movies.png" alt="Movie Recommender System" class="card-img">
-            <div class="card-overlay">
-              <p>A dual-approach recommendation engine built on the MovieLens 1M dataset. Features content-based TF-IDF genre matching and an SVD matrix factorization model that reduced rating prediction RMSE by ~17%</p>
-            </div>
-          </div>
-          <h3 class="card-title" onclick="openFullModal('movie-project-page')">Movie Recommender System: Hybrid Filtering & Evaluation</h3>
-        </div>
-      </div>
-    </section>
 
     <!-- Tools & Experience Section -->
     <section id="about" class="section split-layout">
+      <!-- COLUMN 1: Tools -->
       <div class="column">
         <span class="handwritten accent-text">tools</span>
         <h2>What I use</h2>
         <h4 class="handwritten category-title">Data/Design</h4>
         <ul class="skills-list">
           <li>Python (Pandas, NumPy)</li>
+          <li>Figma</li>
           <li>Matplotlib/Seaborn</li>
           <li>Scikit-learn</li>
           <li>Power BI</li>
@@ -107,10 +228,10 @@
           <li>Excel Office Scripts</li>
           <li>Streamlit</li>
           <li>GitHub</li>
-          <li>Figma</li>
         </ul>
       </div>
 
+      <!-- COLUMN 2: Experience & About Me -->
       <div class="column">
         <h2>Experience</h2>
         <div class="timeline-item">
@@ -118,23 +239,25 @@
           <p class="job-title">Data Analyst Intern @ CIBC</p>
         </div>
         <div class="timeline-item">
+          <span class="handwritten date-tag">Sept 2026 - Present</span>
+          <p class="job-title">Product Designer @ Uoft Blueprint</p>
+        </div>
+        <div class="timeline-item">
           <span class="handwritten date-tag">Feb 2025 - Nov 2026</span>
           <p class="job-title">Research Assistant @ Interactive Media Lab</p>
         </div>
-      </div>
-    </section>
 
-    <!-- Integrated About Me Section -->
-    <section id="about-detail" class="section about-detail-section">
-      <div class="about-header text-center">
-        <h2>About Me</h2>
-        <span class="handwritten accent-text">Hi! I'm Ariel</span>
-      </div>
-      <div class="about-text-content">
-        <p>I'm a third year student at the University of Toronto, majoring in Industrial Engineering with a minor in Artificial Intelligence.</p>
-        <p>I'm currently a Data Analyst intern at CIBC with the SPPD CoE and Infrastructure Project Finance teams (It's definitely a ride being on two teams!).</p>
-        <p>What drew me to data was realizing industrial engineering, optimizing systems, improving processes, was just data science under a different name. I'm interested in working beyond data analytics and visualizations and more into data science and machine learning where I can predict what's next, not just describing what already happened.</p>
-        <p>When I'm not working with data, you'll probably find me crocheting or trying all the matcha spots in Toronto.</p>
+        <!-- About Me Section placed directly under Experience -->
+        <div id="about-detail" class="about-detail-section" style="margin-top: 40px;">
+          <h2>About Me</h2>
+          <span class="handwritten accent-text" style="display: block; margin-bottom: 12px;">Hi! I'm Ariel</span>
+          <div class="about-text-content">
+            <p>I'm a third year student at the University of Toronto, majoring in Industrial Engineering with a minor in Artificial Intelligence.</p>
+            <p>I'm currently a Data Analyst intern at CIBC with the SPPD CoE and Infrastructure Project Finance teams (It's definitely a ride being on two teams!).</p>
+            <p>I'm interested in the intersection of data science and user experience design. I believe the best products are built on evidence: I use data analytics and quantitative research to identify user friction, and UX/UI design to turn those insights into intuitive visual interfaces.</p>
+            <p>Outside of design and data, you'll probably find me crocheting or trying all the matcha spots in Toronto!</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -154,6 +277,11 @@
       <span class="handwritten accent-text center-sub">my experience</span>
     </div>
     <div class="full-modal-body">
+      <div class="modal-project-item" onclick="openFullModal('ontario-health-project-page')">
+        <img src="pics/homepage_final.png" alt="Ontario Health Access Companion" class="modal-img">
+        <h3>Ontario Health Access Companion</h3>
+        <p>Human-centered UI/UX redesign and high-fidelity healthcare portal prototyping aimed at reducing fragmentation when finding primary care in Ontario.</p>
+      </div>
       <div class="modal-project-item" onclick="openFullModal('spotify-project-page')">
         <img src="pics/spotify.png" alt="Spotify Listening Analysis" class="modal-img">
         <h3>Listening Between the Lines: A year of Spotify Data</h3>
@@ -175,6 +303,283 @@
       <a href="https://github.com/arielxie31" target="_blank" class="footer-btn">GitHub</a>
       <a href="https://www.linkedin.com/in/arielyxie" target="_blank" class="footer-btn">LinkedIn</a>
     </footer>
+  </div>
+
+  <!-- DEDICATED PAGE MODAL: ONTARIO HEALTH ACCESS COMPANION -->
+  <div id="ontario-health-project-page" class="full-page-modal project-detail-page">
+    <div class="full-modal-header">
+      <span class="close-full-modal" onclick="closeFullModal('ontario-health-project-page')">&times;</span>
+    </div>
+
+    <div class="project-detail-container text-center">
+      <img src="pics/homepage_final.png" alt="Ontario Health Access Companion UI" class="project-hero-img">
+
+      <h1 class="detail-title">Ontario Health Access Companion</h1>
+      <p class="detail-subtitle-text">Human-Centered UI/UX Redesign & High-Fidelity Healthcare Portal Prototyping</p>
+
+      <p class="detail-intro text-left">
+        Accessing primary care in Ontario is severely fragmented due to outdated registries, inconsistent clinic hours, and a lack of real-time availability. This project applies Human-Centered Design (HCD) principles to design, test, and iterate a digital companion app that streamlines how patients find family doctors, search walk-in clinics, access emergency hotlines, and interact with an AI triage chatbot.
+      </p>
+
+      <div class="project-meta text-left">
+        <p><strong>Tools:</strong> Figma, Usability Testing Frameworks, Qualitative & Quantitative Analysis</p>
+        <p><strong>Role:</strong> UX Researcher, Product Designer (Team Project MIE344)</p>
+        <p><strong>Prototype:</strong> <a href="https://www.figma.com/proto/v3l2gErOtBNbv4XJPh5pis/MIE344?node-id=163-1842&p=f&t=YSufYHlm98c7xOn1-0&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=163%3A1842" target="_blank" rel="noopener noreferrer">Figma Prototype</a></p>
+      </div>
+
+      <!-- Problem & Design Objectives -->
+      <div class="detail-section text-left">
+        <span class="handwritten detail-subtitle">problem & design objectives</span>
+        <p class="mb-12">Ontario patients frequently face systemic barriers in identifying care providers accepting new patients or walk-in clinics with current operating hours, causing unnecessary reliance on emergency rooms. Our team set out to:</p>
+        <ol class="detail-list">
+          <li><strong>Reduce Cognitive Overhead:</strong> Replace confusing terminology and redundant form inputs with standardized, intuitive search patterns.</li>
+          <li><strong>Improve Wayfinding & Status Visibility:</strong> Establish explicit visual cues, active-tab states, and unified global navigation.</li>
+          <li><strong>Support Multimodal Care Pathways:</strong> Unify family doctor search, walk-in clinic discovery, telephone hotlines, and interactive chatbots into a single coherent portal.</li>
+        </ol>
+      </div>
+
+      <!-- Human-Centered Iterative Design Process -->
+      <div class="detail-section text-left">
+        <span class="handwritten detail-subtitle">human-centered iterative design process</span>
+        <p class="mb-12">The platform underwent two iterative rounds of low-fidelity usability testing (4 participants/round) followed by a final high-fidelity evaluation (5 participants) across 6 core tasks:</p>
+        <ul class="detail-list">
+          <li><strong>Lo-fi 1.0 (Round 1 Testing):</strong> Identified ambiguous labels and missing filtering criteria.</li>
+          <li><strong>Lo-fi 2.0 (Round 2 Testing):</strong> Improved active tab visibility and resolved safety callout gaps.</li>
+          <li><strong>Hi-fi Figma Prototype (Final Usability Validation):</strong> Achieved a 100% completion rate across all target scenarios.</li>
+        </ul>
+      </div>
+
+      <!-- Target User & Needs -->
+      <div class="detail-section text-left">
+        <span class="handwritten detail-subtitle">target user & needs</span>
+        <p class="mb-16">The primary target users and focus group were young adults aged 20–30 navigating healthcare systems independently.</p>
+        
+        <div class="zara-diagram-container" style="display: flex; align-items: center; gap: 24px; flex-wrap: wrap;">
+          <img src="pics/target_user.png" alt="Target User Illustration" style="max-width: 220px; width: 100%; height: auto; margin: 0 auto;">
+          <div style="flex: 1; min-width: 260px;">
+            <p><strong>Key Considerations:</strong></p>
+            <ul class="detail-list">
+              <li>Navigating primary care independently for the first time.</li>
+              <li>High reliance on digital tools and fast mobile access.</li>
+              <li>Need quick filtering for after-hours, weekend, or holiday clinic availability.</li>
+              <li>Facing long wait times or recent relocation.</li>
+              <li>Need clear criteria on doctor acceptance status, location, and specific services offered.</li>
+              <li>Diverse demographic backgrounds unfamiliar with complex health navigation.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 1: Baseline Low-Fidelity Prototype (Iteration 1.0) -->
+      <div class="detail-section text-left">
+        <span class="handwritten detail-subtitle">design evolution</span>
+        <h2 class="detail-section-title">Stage 1: Baseline Low-Fidelity Prototype (Iteration 1.0)</h2>
+        <p class="mb-12">
+          <strong>Focus:</strong> Mapping fundamental user flows and testing initial layout structure.
+        </p>
+        <p class="mb-16">
+          The initial low-fidelity prototype established baseline pathways for doctor searches, clinic listings, and hotline contacts.
+        </p>
+
+        <!-- Carousel for Stage 1 -->
+        <div class="carousel-container" id="carousel-stage1">
+          <div class="carousel-slide active">
+            <img src="pics/lo-fi_homepage.png" alt="Homepage Wireframe">
+            <p class="solution-caption mt-8">Homepage (1/6)</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="pics/lo-fi_finddoc.png" alt="Family Doctor Search Wireframe">
+            <p class="solution-caption mt-8">Family Doctor Search (2/6)</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="pics/walk_in_clinic_search.png" alt="Clinic Search Page Wireframe">
+            <p class="solution-caption mt-8">Clinic Search Page (3/6)</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="pics/clinic_details.png" alt="Clinic Details Page Wireframe">
+            <p class="solution-caption mt-8">Clinic Details Page (4/6)</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="pics/hotline.png" alt="Hotline Page Wireframe">
+            <p class="solution-caption mt-8">Hotline Page (5/6)</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="pics/chatbot.png" alt="Chatbot Page Wireframe">
+            <p class="solution-caption mt-8">Chatbot Page (6/6)</p>
+          </div>
+
+          <!-- Carousel Controls -->
+          <button class="carousel-btn prev-btn" onclick="moveCarousel('carousel-stage1', -1)" aria-label="Previous image">&#10094;</button>
+          <button class="carousel-btn next-btn" onclick="moveCarousel('carousel-stage1', 1)" aria-label="Next image">&#10095;</button>
+        </div>
+
+        <!-- Key Usability Findings -->
+        <h3 class="solution-heading mt-24" style="font-size: 1.1rem; font-weight: 700;">Key Usability Findings (Round 1 Testing):</h3>
+        <ul class="detail-list mt-12">
+          <li><strong>Ambiguous Form Labels:</strong> Inputs like "City" created uncertainty (users preferred explicit prompts like "Select City").</li>
+          <li><strong>Pathway Confusion:</strong> Primary actions ("Find a Family Doctor" vs. "Find a Walk-in Clinic") were structurally identical, creating hesitation.</li>
+          <li><strong>Dense Information Architecture:</strong> Clinic detail screens mixed addresses, operating hours, and doctor profiles into unformatted text blocks.</li>
+        </ul>
+      </div>
+
+      <!-- Stage 2: Refined Low-Fidelity Prototype (Iteration 2.0) -->
+      <div class="detail-section text-left">
+        <h2 class="detail-section-title">Stage 2: Refined Low-Fidelity Prototype (Iteration 2.0)</h2>
+        <p class="mb-12">
+          <strong>Focus:</strong> Resolving navigation ambiguity and structuring content hierarchy.
+        </p>
+        <p class="mb-16">
+          In response to initial feedback, restructured global navigation into unified categories (Find Care, Hotline, About, FAQ), repositioned authentication controls to top-right standard web conventions, and added explicit section dividers to clinic detail pages.
+        </p>
+
+        <!-- Carousel for Stage 2 -->
+        <div class="carousel-container" id="carousel-stage2">
+          <div class="carousel-slide active">
+            <img src="pics/homepage_v2.png" alt="Homepage v2 Wireframe">
+            <p class="solution-caption mt-8">Homepage v2 (1/6)</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="pics/family_doctor_search_v2.png" alt="Family Doctor Search Page V2 Wireframe">
+            <p class="solution-caption mt-8">Family Doctor Search Page V2 (2/6)</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="pics/clinic_details_v2.png" alt="Clinic Details v2 Wireframe">
+            <p class="solution-caption mt-8">Clinic Details v2 (3/6)</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="pics/family_doctor_details_v2.png" alt="Family Doctor Details v2 Wireframe">
+            <p class="solution-caption mt-8">Family Doctor Details v2 (4/6)</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="pics/walkin_clinic_search_v2.png" alt="Walk-In Clinic Search V2 Wireframe">
+            <p class="solution-caption mt-8">Walk-In Clinic Search V2 (5/6)</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="pics/saved_clinic_doctor.png" alt="Saved Clinics & Family Doctors Wireframe">
+            <p class="solution-caption mt-8">Saved Clinics & Family Doctors (6/6)</p>
+          </div>
+
+          <!-- Carousel Controls -->
+          <button class="carousel-btn prev-btn" onclick="moveCarousel('carousel-stage2', -1)" aria-label="Previous image">&#10094;</button>
+          <button class="carousel-btn next-btn" onclick="moveCarousel('carousel-stage2', 1)" aria-label="Next image">&#10095;</button>
+        </div>
+
+        <!-- Key Usability Findings (Round 2 Testing) -->
+        <h3 class="solution-heading mt-24" style="font-size: 1.1rem; font-weight: 700;">Key Usability Findings (Round 2 Testing):</h3>
+        <ul class="detail-list mt-12">
+          <li>Search was “straightforward” and “intuitive”.</li>
+        </ul>
+
+        <!-- Remaining Issues -->
+        <h3 class="solution-heading mt-24" style="font-size: 1.1rem; font-weight: 700;">Remaining Issues:</h3>
+        <ul class="detail-list mt-12">
+          <li>No visible active-tab indicator in the navigation</li>
+          <li>Lack of an emergency warning banner on pages</li>
+          <li>Search button didn't have a disabled state logic</li>
+          <li>Saved items page filters (There were no filters to toggle between saved doctors vs. saved clinics)</li>
+          <li>The chatbot lacked guided prompt suggestions (Recognition over Recall violation)</li>
+        </ul>
+      </div>
+      <!-- Stage 3: High-Fidelity Prototype & Design System -->
+      <div class="detail-section text-left">
+        <h2 class="detail-section-title">Stage 3: High-Fidelity Prototype & Design System</h2>
+        <p class="mb-12">
+          <strong>Focus:</strong> Visual polish, accessibility compliance, micro-interactions, and edge-case handling.
+        </p>
+        <p class="mb-16">
+          The final high-fidelity prototype established a trustworthy visual design system built on a calm healthcare color palette (muted blues and soft greens), accessible typography, standardized iconography, and explicit interactive states.
+        </p>
+      </div>
+
+      <!-- FINAL DESIGN FEATURES (INSERTED DIRECTLY AFTER STAGE 2) -->
+      <div class="detail-section text-left">
+        <span class="handwritten detail-subtitle">final design features</span>
+
+        <!-- 1. Login Update, Saved Doctor/Clinic Toggle -->
+        <div class="feature-item mb-32">
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 8px;">1. Login Update, Saved Doctor/Clinic Toggle</h3>
+          <p class="mb-12">No need to create an account for website access, users may create an account to save clinics and family doctors. Added option to toggle between the two. Added tab indication in navigation bar.</p>
+
+          <div style="text-align: center; margin: 16px 0;">
+            <img src="pics/homepage_v3.png" alt="Pic 1 - Homepage V3" style="max-width: 100%; border-radius: 8px; border: 1px solid #e0e0e0; margin-bottom: 8px;">
+            <p class="solution-caption">Final Homepage</p>
+          </div>
+
+          <div style="text-align: center; margin: 16px 0;">
+            <img src="pics/saved_clinicsdoctors.png" alt="Pic 2 - Saved Doctors & Clinics" style="max-width: 100%; border-radius: 8px; border: 1px solid #e0e0e0; margin-bottom: 8px;">
+            <p class="solution-caption">Option to toggle between saved Doctors/Clinics</p>
+          </div>
+        </div>
+
+        <!-- 2. Consistent Colour Scheme & 3. Better Visual Hierarchy (Collage Layout) -->
+        <div class="feature-item mb-32">
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 8px;">2. Consistent Colour Scheme & 3. Better Visual Hierarchy and Structure</h3>
+          <p class="mb-12">Enhances visual consistency, strengthens brand identity, improves readability, and creates a more intuitive and accessible user experience. Improved contrast and structure of search pages. Less clutter and more organized.</p>
+
+          <!-- Collaged Overlapping Layout for Pic 3, Pic 4, Pic 5 -->
+          <div class="collage-container">
+            <img src="pics/clinic_scheme.png" alt="Pic 3 - Colour Scheme" class="collage-img collage-img-3">
+            <img src="pics/about_us.png" alt="Pic 4 - About Us" class="collage-img collage-img-4">
+            <img src="pics/homepage_final.png" alt="Pic 5 - Homepage Final" class="collage-img collage-img-5">
+          </div>
+        </div>
+
+        <!-- Search Results & Clinic Page Breakdown -->
+        <div class="feature-item mb-32">
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 8px;">Search Results & Clinic Page Enhancements</h3>
+          <p class="mb-12">Refined search result tables with distinct status tags, clear filter controls, and detailed clinic information cards including operation hours and doctor profiles.</p>
+          
+          <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px;">
+            <div style="flex: 1; min-width: 280px; text-align: center;">
+              <img src="pics/search_results_v3.png" alt="Pic 6 - Search Results V3" style="max-width: 100%; border-radius: 8px; border: 1px solid #e0e0e0; margin-bottom: 8px;">
+              <p class="solution-caption">Search Results View</p>
+            </div>
+            <div style="flex: 1; min-width: 280px; text-align: center;">
+              <img src="pics/clinic_page.png" alt="Pic 7 - Clinic Page" style="max-width: 100%; border-radius: 8px; border: 1px solid #e0e0e0; margin-bottom: 8px;">
+              <p class="solution-caption">Clinic Profile Details</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. ChatBot Prompt -->
+        <div class="feature-item mb-32">
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 8px;">4. ChatBot Prompt</h3>
+          <p class="mb-12">Distinct colour scheme for chatbot, added prompts about common concerns for users to start off with.</p>
+
+          <div style="text-align: center; margin: 16px 0;">
+            <img src="pics/chatbot_v2.png" alt="Pic 8 - Chatbot V2" style="max-width: 320px; width: 100%; border-radius: 8px; border: 1px solid #e0e0e0; margin-bottom: 8px;">
+            <p class="solution-caption">AI Chatbot with Suggested Prompts</p>
+          </div>
+        </div>
+
+        <!-- Summary & Final Usability Validation -->
+        <div class="feature-item mt-24">
+
+          <span class="handwritten detail-subtitle" style="display: block; text-align: center; margin-top: 20px;">Final Usability Validation & Metrics</span>
+          <p class="mb-12">A final structured usability study ($N=5$ participants aged 20–22 navigating 6 core tasks) demonstrated strong performance across all primary metrics:</p>
+          <ul class="detail-list mb-24">
+            <li><strong>Effectiveness:</strong> 100% Task Completion Rate (6/6 core tasks completed by all participants with zero critical errors).</li>
+            <li><strong>Efficiency:</strong> Participants located clinic operating status ("Open Now") in under 3 seconds without navigation hesitation.</li>
+            <li><strong>Satisfaction:</strong> Users praised the visual hierarchy as "professional, clean, and soothing," expressing high confidence in navigating care options.</li>
+          </ul>
+
+          <span class="handwritten detail-subtitle" style="display: block; text-align: center; margin-top: 20px;">Key Takeaways & Human-Centered Design Lessons</span>
+          <ol class="detail-list">
+            <li><strong>Safety Belongs in the Global Layer:</strong> Critical health information (like 911 emergency banners) must persist across all views, as users do not always enter through the homepage.</li>
+            <li><strong>Recognition Over Generation in Triage:</strong> Presenting suggested quick-prompt pills inside AI chatbots dramatically reduces friction compared to empty text inputs during anxious moments.</li>
+            <li><strong>Structured Hierarchy Prevents Overwhelm:</strong> Segmenting dense, multi-variable medical data into distinct cards allows users to locate critical operational details almost instantly.</li>
+          </ol>
+        </div>
+      </div>
+
+
+      <!-- Footer -->
+      <footer class="footer-links">
+        <a href="mailto:ariel.xie@utoronto.ca" class="footer-btn">ariel.xie@utoronto.ca</a>
+        <a href="https://github.com/arielxie31" target="_blank" class="footer-btn">GitHub</a>
+        <a href="https://www.linkedin.com/in/arielyxie" target="_blank" class="footer-btn">LinkedIn</a>
+      </footer>
+    </div>
   </div>
 
   <!-- DEDICATED PAGE MODAL: SPOTIFY LISTENING ANALYSIS -->
@@ -284,35 +689,10 @@
 
         <p class="mt-16"><strong>Interactive UI:</strong></p>
         <ul class="detail-list">
-          <li>Built a responsive Streamlit front-end allowing users to toggle between movie-title similarity search and personalized user-ID recommendation feeds.</li>
-        </ul>
-      </div>
-
-      <div class="detail-section">
-        <span class="handwritten detail-subtitle">model evaluation & metrics</span>
-        <h2 class="detail-section-title">Performance Results</h2>
-        
-        <p><strong>Random Baseline</strong></p>
-        <ul class="detail-list">
-          <li>Error (RMSE): 1.05</li>
-          <li>Absolute Error (MAE): 0.84</li>
-          <li>Optimization: N/A</li>
-        </ul>
-
-        <p class="mt-16"><strong>SVD Matrix Factorization</strong></p>
-        <ul class="detail-list">
-          <li>Error (RMSE): 0.8729</li>
-          <li>Absolute Error (MAE): 0.6845</li>
-          <li>Optimization: 17% error reduction</li>
+          <li>Built a responsive Streamlit front-end allowing users to toggle between movie-title similarity search and personalized recommendation lists.</li>
         </ul>
       </div>
     </div>
-
-    <footer class="footer-links">
-      <a href="mailto:ariel.xie@utoronto.ca" class="footer-btn">ariel.xie@utoronto.ca</a>
-      <a href="https://github.com/arielxie31" target="_blank" class="footer-btn">GitHub</a>
-      <a href="https://www.linkedin.com/in/arielyxie" target="_blank" class="footer-btn">LinkedIn</a>
-    </footer>
   </div>
 
   <!-- DEDICATED PAGE MODAL: ZARA WEBSITE REDESIGN -->
@@ -408,5 +788,26 @@
   </div>
 
   <script src="script.js"></script>
+  <script>
+    function moveCarousel(carouselId, direction) {
+      const container = document.getElementById(carouselId);
+      if (!container) return;
+
+      const slides = container.querySelectorAll('.carousel-slide');
+      let currentIndex = -1;
+
+      slides.forEach((slide, index) => {
+        if (slide.classList.contains('active')) {
+          currentIndex = index;
+        }
+      });
+
+      if (currentIndex !== -1) {
+        slides[currentIndex].classList.remove('active');
+        let newIndex = (currentIndex + direction + slides.length) % slides.length;
+        slides[newIndex].classList.add('active');
+      }
+    }
+  </script>
 </body>
 </html>

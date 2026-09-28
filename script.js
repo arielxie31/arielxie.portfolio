@@ -46,3 +46,23 @@ window.addEventListener('click', function(e) {
     }
   }
 });
+
+function moveCarousel(carouselId, direction) {
+  const container = document.getElementById(carouselId);
+  if (!container) return;
+
+  const slides = container.querySelectorAll('.carousel-slide');
+  let currentIndex = -1;
+
+  slides.forEach((slide, index) => {
+    if (slide.classList.contains('active')) {
+      currentIndex = index;
+    }
+  });
+
+  if (currentIndex !== -1) {
+    slides[currentIndex].classList.remove('active');
+    let newIndex = (currentIndex + direction + slides.length) % slides.length;
+    slides[newIndex].classList.add('active');
+  }
+}
